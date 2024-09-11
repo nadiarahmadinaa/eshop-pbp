@@ -5,7 +5,8 @@ http://nadia-rahmadina31-eshoppbp2.pbp.cs.ui.ac.id/
 
 Pertanyaan:
 1. Bagaimana cara mengimplementasikan checklist step-by-step:
--  Membuat sebuah proyek Django baru: 
+-  Membuat sebuah proyek Django baru:
+  
 Buat repository baru di github, lalu git clone link repo, change directory ke dalam git folder tersebut, dan buat virtual environment dengan:
 ```
 python -m venv venv 
@@ -18,24 +19,30 @@ django-admin startproject eshop_pbp
 ```
 
 - Membuat aplikasi dengan nama main pada proyek tersebut:
+
 Buat aplikasi baru berjudul main dengan menjalankan:
 ```
 python manage.py startapp main
 ```
 
 - Melakukan routing pada proyek agar dapat menjalankan aplikasi main:
+
 Menambahkan 'main' pada INSTALLED_APPS di dalam settings.py dari proyek eshop_pbp.
 
 - Membuat model pada aplikasi main dengan nama Product dan memiliki atribut wajib name price description:
+
 Membuat class Product yang menerima input models.Models dan memasang 4 variabel: name dengan input CharField, description dengan input TextField, price dengan input IntegerField, dan production_date dengan input DateField.
 
 - Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu:
+
 Membuat fungsi dengan context berupa dictionary dengan key appname, name, class, npm, dan value berupa nilai dari masing-masing key. Kemudian fungsi itu akan mereturn fungsi render dari django.shortcuts berisi request, nama template, dan context.
 
-- Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
+- Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py:
+
 Membuat file urls.py di dalam aplikasi main, mengimport path dan show_main. Menghubungkan fungsi (dalam kasus ini namanya show_main) dengan menambahkan path('', show_main, name='show_main') pada list urlpatterns di urls.py.
 
-- Melakukan deployment ke PWS terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
+- Melakukan deployment ke PWS terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet:
+
 Membuat proyek baru di PWS, lalu pada local git project menjalankan command:
 ```
 git remote add pws http://pbp.cs.ui.ac.id/nadia.rahmadina31/eshoppbp
