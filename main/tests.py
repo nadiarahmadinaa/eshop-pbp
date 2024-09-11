@@ -15,7 +15,7 @@ class mainTest(TestCase):
         response = Client().get('/test/')
         self.assertEqual(response.status_code, 404)
 
-    def test_strong_mood_user(self):
+    def test_make_object(self):
         now = timezone.now()
         product = Product.objects.create(
           name="Cheesecake",
