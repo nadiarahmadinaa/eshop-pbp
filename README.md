@@ -42,7 +42,7 @@ git remote add pws http://pbp.cs.ui.ac.id/nadia.rahmadina31/eshoppbp
 ''' 
 Command tersebut akan menghubungkan local git dengan PWS. Kemudian lakukan git add, commit, push pws master.
 
-2. ![alt text](https://file%2B.vscode-resource.vscode-cdn.net/var/folders/x3/zc9gp11977g6r6h3pf7mpmgh0000gn/T/TemporaryItems/NSIRD_screencaptureui_jIq7vn/Screen%20Shot%202024-09-11%20at%2008.20.41.png?version%3D1726017661377)
+2. ![alt text](https://github.com/nadiarahmadinaa/eshop-pbp/blob/main/bagan.png)
 Ketika client membuat request ke server, aplikasi django akan merefer ke urls.py untuk melihat konten dari adress yang diminta. urls.py kemudian merefer ke fungsi yang berada di views.py. Fungsi tersebut akan memanggil html file yang akan di render serta informasi yang ingin ditampilkan. Informasi yang ditampilkan bisa berupa data dari database yang terhubung melalui models.py, sehingga views.py bisa menggabungkan template html dan data dari models.py.
 
 3. Fungsi git dalam pengembangan perangkat lunak:
