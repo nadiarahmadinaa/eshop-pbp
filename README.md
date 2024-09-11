@@ -7,21 +7,21 @@ Pertanyaan:
 1. Bagaimana cara mengimplementasikan checklist step-by-step:
 -  Membuat sebuah proyek Django baru: 
 Buat repository baru di github, lalu git clone link repo, change directory ke dalam git folder tersebut, dan buat virtual environment dengan:
-'''
+```
 python -m venv venv 
 source venv/bin/activate
-'''
+```
 Kemudian mengisi requirements.txt dan menginstallnya.
 Lalu buat project django baru dengan:
-'''
+```
 django-admin startproject eshop_pbp
-'''
+```
 
 - Membuat aplikasi dengan nama main pada proyek tersebut:
 Buat aplikasi baru berjudul main dengan menjalankan:
-'''
+```
 python manage.py startapp main
-'''
+```
 
 - Melakukan routing pada proyek agar dapat menjalankan aplikasi main:
 Menambahkan 'main' pada INSTALLED_APPS di dalam settings.py dari proyek eshop_pbp.
