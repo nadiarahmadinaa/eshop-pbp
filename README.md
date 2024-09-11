@@ -37,15 +37,16 @@ Membuat file urls.py di dalam aplikasi main, mengimport path dan show_main. Meng
 
 - Melakukan deployment ke PWS terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
 Membuat proyek baru di PWS, lalu pada local git project menjalankan command:
-'''
+```
 git remote add pws http://pbp.cs.ui.ac.id/nadia.rahmadina31/eshoppbp
-''' 
+```
 Command tersebut akan menghubungkan local git dengan PWS. Kemudian lakukan git add, commit, push pws master.
 
-2. ![alt text](https://github.com/nadiarahmadinaa/eshop-pbp/blob/main/bagan.png)
+2.
+![alt text](https://github.com/nadiarahmadinaa/eshop-pbp/blob/main/bagan.png)
 Ketika client membuat request ke server, aplikasi django akan merefer ke urls.py untuk melihat konten dari adress yang diminta. urls.py kemudian merefer ke fungsi yang berada di views.py. Fungsi tersebut akan memanggil html file yang akan di render serta informasi yang ingin ditampilkan. Informasi yang ditampilkan bisa berupa data dari database yang terhubung melalui models.py, sehingga views.py bisa menggabungkan template html dan data dari models.py.
 
-3. Fungsi git dalam pengembangan perangkat lunak:
+4. Fungsi git dalam pengembangan perangkat lunak:
 - Memudahkan version control atau pelacakan perubahan pada suatu proyek.
 - Mempermudah kolaborasi dengan adanya branch untuk memastikan setiap kontribusi tidak bertabrakan dengan kode yang sudah ada.
 - Sebagai backup dari suatu proyek, dari versi awal hingga terkini.
