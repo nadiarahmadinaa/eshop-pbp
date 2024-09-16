@@ -3,7 +3,7 @@ Web: http://nadia-rahmadina31-eshoppbp.pbp.cs.ui.ac.id/
 http://nadia-rahmadina31-eshoppbp2.pbp.cs.ui.ac.id/
 (belum tahu mana link yang akan jalan, masih error karena problem PWS)
 
-Pertanyaan:
+## Tugas 1 Pertanyaan:
 1. Bagaimana cara mengimplementasikan checklist step-by-step:
 -  Membuat sebuah proyek Django baru:
 Buat repository baru di github, lalu git clone link repo, change directory ke dalam git folder tersebut, dan buat virtual environment dengan:
@@ -61,3 +61,145 @@ Ketika client membuat request ke server, aplikasi django akan merefer ke urls.py
 
 5. Mengapa model Django disebut ORM:
 ORM adalah singkatan Object-Relational Mapper yang memudahkan interaksi dengan database dari kode kita. Django disebut ORM karena memiliki models.py yang berfungsi membuat table pada database dengan nama classnya. Isi dari table tersebut adalah variabel yang terdapat di dalam class. Dengan models, kita tidak perlu memasukkan query ke database secara manual dan bisa langsung dari code kita, sehingga dapat disebut sebuah ORM.
+
+## Tugas 2 Pertanyaan:
+1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+Data delivery penting dalam pengimplementasian suatu platform karena akan memudahkan dan meningkatkan efisiensi pertukaran data antar aplikasi, platform, atau sistem dalam bentuk yang terstandardisasi. 
+
+2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+JSON lebih populer dan lebih baik dibandingkan XML karena:
+- Format yang lebih simple dan fleksibel sehingga mudah dibaca oleh manusia dan diparsing oleh mesin
+- Ukuran JSON yang lebih kecil dibandingkan XML karena terdapat lebih banyak karakter seperti tags pada XML
+- Karena simpel, kecil, mudah diparsing, dan fleksibel, JSON lebih cepat dan mudah untuk digunakan di berbagai aplikasi
+
+3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+Method is_valid() pada form Django berfungsi untuk memvalidasi data seperti tipe data dan ada atau tidaknya data. Method ini diperlukan untuk menghindari error pada sistem dengan adanya data yang tidak valid atau kosong. Dengan method ini, user akan diberikan feedback terkait data inputnya yang masih salah.
+
+4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+csrf_token diperlukan dalam form untuk menghindari adanya action dari user yang tidak terautentikasi. Tanpa csrf_token, user di luar autentikasi website bisa membuat POST request terhadap aplikasi sesukanya. Dengan demikian, penyerang bisa mengubah data, menambahkan data, menghilangkan data, bahkan memasukkan file atau payload berbahaya.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+-  Membuat input form untuk menambahkan objek model pada app sebelumnya
+Kita edit dahulu objek modelnya untuk memiliki id yang di generate secara otomatis dan tidak bisa diubah dengan uuid:
+```
+import uuid # Tambahkan import di atas models.py
+id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) # Tambahkan baris ini di dalam class Product
+
+```
+Kemudian buat input form dengan forms.py di dalam main:
+```
+from django.forms import ModelForm
+from main.models import Product
+
+class FreshBakesForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ["name", "description", "price"]
+```
+Buat laman htmlnya di create_fresh_bakes_entry.html:
+```
+<h1>Add New Fresh Bakes</h1>
+
+<form method="POST">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+    <tr>
+      <td></td>
+      <td>
+        <input type="submit" value="Add Fresh Bakes" />
+      </td>
+    </tr>
+  </table>
+</form>
+```
+Tambahkan laman tersebut ke urlpatterns di dalam urls.py:
+```
+path('create-fresh-bakes-entry', create_fresh_bakes_entry, name='create_fresh_bakes_entry'),
+```
+Buat routenya di views.py juga:
+```
+def create_fresh_bakes_entry(request):
+    form = FreshBakesForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return redirect('main:show_main')
+
+    context = {'form': form}
+    return render(request, "create_fresh_bakes_entry.html", context)
+```
+Edit fungsi main juga untuk menampilkan fresh bakes:
+```
+def show_main(request):
+    fresh_bakes = Product.objects.all()
+    context = {
+        'appname' : 'YumYum Bakeshop',
+        'name': 'Nadia Rahmadina Aristawati',
+        'class': 'PBP D',
+        'npm': '2306207972',
+        'fresh_bakes': fresh_bakes
+    }
+
+    return render(request, "main.html", context)
+```
+Dan terakhir menambahkan baris-baris berikut di akhir main.html untuk membuat bakes baru dan menampilkan bakes yang ada dalam suatu tabel:
+```
+<a href="{% url 'main:create_fresh_bakes_entry' %}">
+    <button>Add New Fresh Bakes</button>
+  </a>
+{% if not fresh_bakes %}
+<p>No fresh bakes yet.</p>
+{% else %}
+<table>
+  <tr>
+    <th>Fresh Bakes Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Production Date</th>
+  </tr>
+ 
+  {% for bakes in fresh_bakes %}
+  <tr>
+    <td>{{bakes.name}}</td>
+    <td>{{bakes.description}}</td>
+    <td>{{bakes.price}}</td>
+    <td>{{bakes.production_date}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+```
+
+- Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
+Melakukan import HttpResponse dan serializers, serta menambahkan 4 fungsi views tersebut:
+```
+from django.http import HttpResponse
+from django.core import serializers
+def show_xml(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_xml_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+
+- Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
+Menambahkan baris-baris berikut ke dalam urlpatterns di urls.py:
+```
+path('json/', show_json, name='show_json'),
+path('xml/', show_xml, name='show_xml'),
+path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'),
+path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
+```
+
+6. Akses URL untuk XML, JSON, XML by ID, dan JSON by ID:

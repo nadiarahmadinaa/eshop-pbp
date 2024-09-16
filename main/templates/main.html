@@ -6,3 +6,30 @@
 <p>{{ class }}</p>
 <h1>NPM:</h1>
 <p>{{ npm }}</p>
+<a href="{% url 'main:create_fresh_bakes_entry' %}">
+    <button>Add New Fresh Bakes</button>
+  </a>
+<!-- {% if not fresh_bakes %}
+<p>No fresh bakes yet.</p>
+{% else %} -->
+<table>
+  <tr>
+    <th>Fresh Bakes Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Production Date</th>
+  </tr>
+ 
+  {% for bakes in fresh_bakes %}
+  <tr>
+    <td>{{bakes.name}}</td>
+    <td>{{bakes.description}}</td>
+    <td>{{bakes.price}}</td>
+    <td>{{bakes.production_date}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<br />
+
