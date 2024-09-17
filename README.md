@@ -203,3 +203,11 @@ path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
 ```
 
 6. Akses URL untuk XML, JSON, XML by ID, dan JSON by ID:
+- XML:
+![alt text](https://github.com/nadiarahmadinaa/eshop-pbp/blob/main/xml.png)
+- JSON:
+![alt text](https://github.com/nadiarahmadinaa/eshop-pbp/blob/main/json.png)
+- XML by ID:
+![alt text](https://github.com/nadiarahmadinaa/eshop-pbp/blob/main/xmlid.png)
+- JSON by ID:
+![alt text](https://github.com/nadiarahmadinaa/eshop-pbp/blob/main/jsonid.png)
