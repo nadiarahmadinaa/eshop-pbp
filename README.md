@@ -115,7 +115,7 @@ Buat laman htmlnya di create_fresh_bakes_entry.html:
 ```
 Tambahkan laman tersebut ke urlpatterns di dalam urls.py:
 ```
-path('create-fresh-bakes-entry', create_fresh_bakes_entry, name='create_fresh_bakes_entry'),
+path('create_fresh_bakes_entry', create_fresh_bakes_entry, name='create_fresh_bakes_entry'),
 ```
 Buat routenya di views.py juga:
 ```
