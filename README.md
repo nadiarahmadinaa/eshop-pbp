@@ -214,6 +214,7 @@ path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
 
 ## Tugas 4 Pertanyaan:
 1.  Apa perbedaan antara HttpResponseRedirect() dan redirect()
+
 HttpResponseRedirect() hanya menerima input berupa url, sedangkan redirect() lebih fleksibel dan bisa menerima input model, view, maupun url.
 
 2.  Jelaskan cara kerja penghubungan model Product dengan User!
@@ -225,8 +226,9 @@ Dengan membuat relasi ForeignKey ke model User. ForeignKey memungkinkan satu Pro
 on_delete=models.CASCADE untuk mengkonfigurasi ketika User dihapus, semua Product yang terkait dengannya juga dihapus.
 
 3.  Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+
 Authentication adalah proses untuk memverifikasi identitas pengguna, layaknya dalam proses login. Authorization adalah proses untuk memverifikasi apakah pengguna yang telah terautentikasi memiliki izin untuk mengakses atau melakukan tindakan tertentu.
-Django mengimplementasikan autentikasi melalui authenticate() dan login():
+Django mengimplementasikan autentikasi melalui authenticate(), dan login():
 ```
 from django.contrib.auth import authenticate, login
 ```
@@ -239,44 +241,46 @@ def logged_in_users_only(request):
 ```
 
 4.  Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+
 Django bisa mengingat pengguna yang telah login dengan session ID di cookies. Cookies bisa menyimpan informasi lain seperti preferensi, items yang terikat kepada user logged-in seperti barang di keranjang, detail login, halaman website yang telah divisit, dan lain sebagainya. 
 Cookies sendiri tidak berbahaya, namun data di dalam cookies bisa mengandung informasi sensitif. Selain itu, jika website rentan terhadap cross-site scripting (XSS), ada kemungkinan cookies kita dicuri dan digunakan oleh attacker untuk mengautentikasi diri mereka sebagai kita dan mendapatkan hak akses kita.
 
 5.  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-- Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
-> Membuat registration form bagi User dengan UserCreationForm yang diimplementasikan di dalam function register dalam views.py
-> Mengimplementasikan AuthenticationForm pada function login_user dalam views.py untuk autentikasi login seorang user
-> Menghubungkan register dengan register.html, login_user dengan login.html melalui fungsi render
-> Menghubungkan logout_user dengan main menu melalui HttpResponseRedirect
-> Membuat path url untuk register, login, dan logout di urlpatterns dalam urls.py dari main
+- [x] Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
+- Membuat registration form bagi User dengan UserCreationForm yang diimplementasikan di dalam function register dalam views.py
+- Mengimplementasikan AuthenticationForm pada function login_user dalam views.py untuk autentikasi login seorang user
+- Menghubungkan register dengan register.html, login_user dengan login.html melalui fungsi render
+- Menghubungkan logout_user dengan main menu melalui HttpResponseRedirect
+- Membuat path url untuk register, login, dan logout di urlpatterns dalam urls.py dari main
 
-- Menghubungkan model Product dengan User.
-> Mengimport User pada models.py, lalu tambahkan variabel user pada model Product sebagai berikut 
+- [x] Menghubungkan model Product dengan User.
+- Mengimport User pada models.py, lalu tambahkan variabel user pada model Product sebagai berikut 
 ```
 user = models.ForeignKey(User, on_delete=models.CASCADE)
 ```
-> Mengambil data user melalui request.user saat suatu POST form terkirim untuk membuat model Product, dan menghubungkannya dengan Product yang dibuat.
-> Agar data hanya bisa dilihat oleh User yang memilikinya, pastikan dengan melakukan filter data
+- Mengambil data user melalui request.user saat suatu POST form terkirim untuk membuat model Product, dan menghubungkannya dengan Product yang dibuat.
+- Agar data hanya bisa dilihat oleh User yang memilikinya, pastikan dengan melakukan filter data
 ```
 fresh_bakes = Product.objects.filter(user=request.user)
 ```
 
-- Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
-> Melakukan registrasi untuk 2 user berbeda
-> Login ke akun masing-masing user
-> Create Fresh Bakes sebanyak 3 kali dengan 3 Product berbeda
-> Cek ulang pada main page, memastikan bahwa data hanya visible terhadap diri sendiri dan seluruh data yang dimiliki ditampilkan dengan baik.
 
-- Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
-> Membuat context nama dari main page dinamis sesuai user yang logged in dengan mengubah name sebagai berikut
+- [x] Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+- Melakukan registrasi untuk 2 user berbeda
+- Login ke akun masing-masing user
+- Create Fresh Bakes sebanyak 3 kali dengan 3 Product berbeda
+- Cek ulang pada main page, memastikan bahwa data hanya visible terhadap diri sendiri dan seluruh data yang dimiliki ditampilkan dengan baik.
+
+- [x] Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
+- Membuat context nama dari main page dinamis sesuai user yang logged in dengan mengubah name sebagai berikut
 ```
 'name': request.user.username,
 ```
-> Melakukan set cookie sesuai jam login ketika form login valid dengan command
+- Melakukan set cookie sesuai jam login ketika form login valid dengan command
 ```
 response.set_cookie('last_login', str(datetime.datetime.now()))
 ```
-> Memastikan bahwa cookies last login ini dihapus ketika user log out
+- Memastikan bahwa cookies last login ini dihapus ketika user log out
 ```
 response.delete_cookie('last_login')
 ```
