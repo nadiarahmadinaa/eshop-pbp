@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from main.forms import FreshBakesForm
 from main.models import Product
 from django.http import HttpResponse, HttpResponseRedirect
@@ -21,6 +21,21 @@ def create_fresh_bakes_entry(request):
 
     context = {'form': form}
     return render(request, "create_fresh_bakes_entry.html", context)
+
+def edit_fresh_bakes(request,id):
+    fresh_bakes = Product.objects.get(pk=id)
+    form = FreshBakesForm(request.POST or None, instance=fresh_bakes)
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+    context = {'form': form}
+    return render(request, "edit_fresh_bakes.html", context)
+
+def delete_fresh_bakes(request, id):
+    fresh_bakes = Product.objects.get(pk=id)
+    fresh_bakes.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
 
 def logout_user(request):
     logout(request)
