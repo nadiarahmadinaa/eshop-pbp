@@ -1,7 +1,5 @@
 # eshop-pbp: YumYum Bakehouse
 Web: http://nadia-rahmadina31-eshoppbp.pbp.cs.ui.ac.id/
-http://nadia-rahmadina31-eshoppbp2.pbp.cs.ui.ac.id/
-(belum tahu mana link yang akan jalan, masih error karena problem PWS)
 
 ## Tugas 2 Pertanyaan:
 1. Bagaimana cara mengimplementasikan checklist step-by-step:
@@ -266,21 +264,22 @@ fresh_bakes = Product.objects.filter(user=request.user)
 
 
 - [x] Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
-- Melakukan registrasi untuk 2 user berbeda
+- Menjalankan ```python manage.py runserver```
+- Melakukan registrasi untuk 2 user berbeda pada localhost
 - Login ke akun masing-masing user
 - Create Fresh Bakes sebanyak 3 kali dengan 3 Product berbeda
 - Cek ulang pada main page, memastikan bahwa data hanya visible terhadap diri sendiri dan seluruh data yang dimiliki ditampilkan dengan baik.
 
 - [x] Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
-- Membuat context nama dari main page dinamis sesuai user yang logged in dengan mengubah name sebagai berikut
+- Membuat context nama dari main page dinamis sesuai user yang logged in dengan mengubah name sebagai berikut pada views.py show_main() bagian context
 ```
 'name': request.user.username,
 ```
-- Melakukan set cookie sesuai jam login ketika form login valid dengan command
+- Melakukan set cookie pada views.py login_user() sesuai jam login ketika form login valid dengan command
 ```
 response.set_cookie('last_login', str(datetime.datetime.now()))
 ```
-- Memastikan bahwa cookies last login ini dihapus ketika user log out
+- Memastikan bahwa cookies last login ini dihapus ketika user log out di views.py logout_user()
 ```
 response.delete_cookie('last_login')
 ```
