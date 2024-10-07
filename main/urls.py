@@ -1,5 +1,5 @@
 from django.urls import path
-from main.views import show_main, create_fresh_bakes_entry, show_xml, show_json, show_xml_by_id, show_json_by_id, login_user, logout_user, register, edit_fresh_bakes, delete_fresh_bakes
+from main.views import show_main, create_fresh_bakes_entry, show_xml, show_json, show_xml_by_id, show_json_by_id, login_user, logout_user, register, edit_fresh_bakes, delete_fresh_bakes, add_bakes_entry_ajax
 
 app_name = 'main'
 
@@ -15,5 +15,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('edit-fresh-bakes/<uuid:id>', edit_fresh_bakes, name='edit_fresh_bakes'),
     path('delete/<uuid:id>', delete_fresh_bakes, name='delete_fresh_bakes'),
+    path('create-ajax/', add_bakes_entry_ajax, name='add_bakes_entry_ajax'),
 ]
 

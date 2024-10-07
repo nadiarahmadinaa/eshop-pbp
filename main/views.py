@@ -1,12 +1,17 @@
-from django.shortcuts import render, redirect, reverse
 from main.forms import FreshBakesForm
 from main.models import Product
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.utils.html import strip_tags
 import datetime
 from django.urls import reverse
 
@@ -17,7 +22,7 @@ def create_fresh_bakes_entry(request):
         fresh_bakes = form.save(commit=False)
         fresh_bakes.user = request.user
         fresh_bakes.save()
-        return redirect('main:show_main')
+        return redirect('main:show_main')  
 
     context = {'form': form}
     return render(request, "create_fresh_bakes_entry.html", context)
@@ -73,25 +78,40 @@ def register(request):
 
 @login_required(login_url='/login')
 def show_main(request):
-    fresh_bakes = Product.objects.filter(user=request.user)
     context = {
         'appname' : 'YumYum Bakeshop',
         'name': request.user.username,
         'class': 'PBP D',
         'npm': '2306207972',
-        'fresh_bakes': fresh_bakes,
         'last_login': request.COOKIES['last_login'],
     }
 
     return render(request, "main.html", context)
 
+@csrf_exempt
+@require_POST
+def add_bakes_entry_ajax(request):
+    name = strip_tags(request.POST.get("name"))
+    description = strip_tags(request.POST.get("description"))
+    price = request.POST.get("price")
+    user = request.user
+    if name=="" or description=="":
+        return HttpResponse(b"ERROR: Invalid data.", status=400)
+    new_bakes = Product(
+        name=name, description=description,
+        price=price,
+        user=user
+    )
+    new_bakes.save()
+    return HttpResponse(b"CREATED", status=201)
+
 
 def show_xml(request):
-    data = Product.objects.all()
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_json(request):
-    data = Product.objects.all()
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def show_xml_by_id(request, id):
