@@ -1,8 +1,9 @@
 # eshop-pbp: YumYum Bakehouse
 Web: http://nadia-rahmadina31-eshoppbp.pbp.cs.ui.ac.id/
+<details>
+<summary><h2>Tugas 2</h2></summary>
 
-## Tugas 2 Pertanyaan:
-1. Bagaimana cara mengimplementasikan checklist step-by-step:
+## 1. Bagaimana cara mengimplementasikan checklist step-by-step:
 -  Membuat sebuah proyek Django baru:
 Buat repository baru di github, lalu git clone link repo, change directory ke dalam git folder tersebut, dan buat virtual environment dengan:
 ```
@@ -40,43 +41,47 @@ git remote add pws http://pbp.cs.ui.ac.id/nadia.rahmadina31/eshoppbp
 ```
 Command tersebut akan menghubungkan local git dengan PWS. Kemudian lakukan git add, commit, push pws master.
 
-2.
+## 2.
 ![alt text](https://github.com/nadiarahmadinaa/eshop-pbp/blob/main/bagan.png)
 
 Ketika client membuat request ke server, aplikasi django akan merefer ke urls.py untuk melihat konten dari adress yang diminta. urls.py kemudian merefer ke fungsi yang berada di views.py. Fungsi tersebut akan memanggil html file yang akan di render serta informasi yang ingin ditampilkan. Informasi yang ditampilkan bisa berupa data dari database yang terhubung melalui models.py, sehingga views.py bisa menggabungkan template html dan data dari models.py. Kemudian, tampilan yang telah dipanggil oleh views.py akan dikirim ke server dan ditampilkan ke client sebagai response.
 
-4. Fungsi git dalam pengembangan perangkat lunak:
+## 3. Fungsi git dalam pengembangan perangkat lunak:
 - Memudahkan version control atau pelacakan perubahan pada suatu proyek.
 - Mempermudah kolaborasi dengan adanya branch untuk memastikan setiap kontribusi tidak bertabrakan dengan kode yang sudah ada.
 - Sebagai backup dari suatu proyek, dari versi awal hingga terkini.
 - Memudahkan distribusi kode secara publik.
 
-4. Mengapa Django menjadi permulaan pengembangan perangkat lunak:
+## 4. Mengapa Django menjadi permulaan pengembangan perangkat lunak:
 - Django menggunakan Python, bahasa high-level yang mudah untuk dipelajari dan diterapkan.
 - Django memiliki pengguna yang banyak, komunitas luas, dokumentasi baik, sehingga dapat mendukung proses pembelajaran.
 - Django memiliki templates yang dapat dipakai sehingga tidak mulai dari nol ketika membangun suatu web application.
 - Django memiliki arsitektur yang terstruktur dengan dipisahnya setiap bagian dari aplikasi ke file python yang berbeda.
 
-5. Mengapa model Django disebut ORM:
+## 5. Mengapa model Django disebut ORM:
 ORM adalah singkatan Object-Relational Mapper yang memudahkan interaksi dengan database dari kode kita. Django disebut ORM karena memiliki models.py yang berfungsi membuat table pada database dengan nama classnya. Isi dari table tersebut adalah variabel yang terdapat di dalam class. Dengan models, kita tidak perlu memasukkan query ke database secara manual dan bisa langsung dari code kita, sehingga dapat disebut sebuah ORM.
+</details>
 
-## Tugas 3 Pertanyaan:
-1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+<details>
+<summary> <h2>Tugas 3</h2></summary>
+
+## 1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+
 Data delivery penting dalam pengimplementasian suatu platform karena akan memudahkan dan meningkatkan efisiensi pertukaran data antar aplikasi, platform, atau sistem dalam bentuk yang terstandardisasi. 
 
-2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+## 2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
 JSON lebih populer dan lebih baik dibandingkan XML karena:
 - Format yang lebih simple dan fleksibel sehingga mudah dibaca oleh manusia dan diparsing oleh mesin
 - Ukuran JSON yang lebih kecil dibandingkan XML karena terdapat lebih banyak karakter seperti tags pada XML
 - Karena simpel, kecil, mudah diparsing, dan fleksibel, JSON lebih cepat dan mudah untuk digunakan di berbagai aplikasi
 
-3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+## 3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
 Method is_valid() pada form Django berfungsi untuk memvalidasi data seperti tipe data dan ada atau tidaknya data. Method ini diperlukan untuk menghindari error pada sistem dengan adanya data yang tidak valid atau kosong. Dengan method ini, user akan diberikan feedback terkait data inputnya yang masih salah.
 
-4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+## 4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
 csrf_token diperlukan dalam form untuk menghindari adanya action dari user yang tidak terautentikasi. Tanpa csrf_token, user di luar autentikasi website bisa membuat POST request terhadap aplikasi sesukanya. Dengan demikian, penyerang bisa mengubah data, menambahkan data, menghilangkan data, bahkan memasukkan file atau payload berbahaya.
 
-5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 -  Membuat input form untuk menambahkan objek model pada app sebelumnya
 Kita edit dahulu objek modelnya untuk memiliki id yang di generate secara otomatis dan tidak bisa diubah dengan uuid:
 ```
@@ -200,7 +205,7 @@ path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'),
 path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
 ```
 
-6. Akses URL untuk XML, JSON, XML by ID, dan JSON by ID:
+## 6. Akses URL untuk XML, JSON, XML by ID, dan JSON by ID:
 - XML:
 ![alt text](https://github.com/nadiarahmadinaa/eshop-pbp/blob/main/xml.png)
 - JSON:
@@ -209,13 +214,16 @@ path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
 ![alt text](https://github.com/nadiarahmadinaa/eshop-pbp/blob/main/xmlid.png)
 - JSON by ID:
 ![alt text](https://github.com/nadiarahmadinaa/eshop-pbp/blob/main/jsonid.png)
+</details>
 
-## Tugas 4 Pertanyaan:
-1.  Apa perbedaan antara HttpResponseRedirect() dan redirect()
+<details>
+<summary><h2>Tugas 4</h2></summary>
+
+## 1.  Apa perbedaan antara HttpResponseRedirect() dan redirect()
 
 HttpResponseRedirect() hanya menerima input berupa url, sedangkan redirect() lebih fleksibel dan bisa menerima input model, view, maupun url.
 
-2.  Jelaskan cara kerja penghubungan model Product dengan User!
+## 2.  Jelaskan cara kerja penghubungan model Product dengan User!
 ```
 class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -223,7 +231,7 @@ class Product(models.Model):
 Dengan membuat relasi ForeignKey ke model User. ForeignKey memungkinkan satu Product dikaitkan ke satu User, tapi seorang User bisa memiliki banyak Product.
 on_delete=models.CASCADE untuk mengkonfigurasi ketika User dihapus, semua Product yang terkait dengannya juga dihapus.
 
-3.  Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+## 3.  Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
 
 Authentication adalah proses untuk memverifikasi identitas pengguna, layaknya dalam proses login. Authorization adalah proses untuk memverifikasi apakah pengguna yang telah terautentikasi memiliki izin untuk mengakses atau melakukan tindakan tertentu.
 Django mengimplementasikan autentikasi melalui authenticate(), dan login():
@@ -238,12 +246,12 @@ from django.contrib.auth.decorators import login_required
 def logged_in_users_only(request):
 ```
 
-4.  Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+## 4.  Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
 
 Django bisa mengingat pengguna yang telah login dengan session ID di cookies. Cookies bisa menyimpan informasi lain seperti preferensi, items yang terikat kepada user logged-in seperti barang di keranjang, detail login, halaman website yang telah divisit, dan lain sebagainya. 
 Cookies sendiri tidak berbahaya, namun data di dalam cookies bisa mengandung informasi sensitif. Selain itu, jika website rentan terhadap cross-site scripting (XSS), ada kemungkinan cookies kita dicuri dan digunakan oleh attacker untuk mengautentikasi diri mereka sebagai kita dan mendapatkan hak akses kita.
 
-5.  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+## 5.  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 - [x] Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
 - Membuat registration form bagi User dengan UserCreationForm yang diimplementasikan di dalam function register dalam views.py
 - Mengimplementasikan AuthenticationForm pada function login_user dalam views.py untuk autentikasi login seorang user
@@ -283,9 +291,11 @@ response.set_cookie('last_login', str(datetime.datetime.now()))
 ```
 response.delete_cookie('last_login')
 ```
+</details>
+<details>
+<summary><h2>Tugas 5</h2></summary>
 
-## Tugas 5 Pertanyaan:
-1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+## 1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
 
 Urutan prioritas CSS selector dari most hingga least priority:
 - Inline CSS
@@ -300,7 +310,7 @@ Dengan beberapa aturan sebagai berikut:
 - Selector yang lebih spesifik akan didahulukan dibandingkan yang kurang spesifik
 
 
-2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+## 2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
 
 Responsive design penting karena dengannya, aplikasi akan tampil dengan baik di berbagai perangkat dan ukuran screen sehingga memberi pengalaman yang baik pula bagi penggunanya.
 
@@ -311,28 +321,7 @@ Contoh web dengan design tidak responsive:
 ```https://tni-ad.mil.id/```
 
 
-3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
-
-- Margin: ruang di luar elemen yang memisahkan elemen tersebut dengan elemen lain di sekitarnya. Contoh penerapannya:
-```
-div {
-  margin: 20px;
-}
-```
-- Border: garis yang mengelilingi elemen dan memisahkan konten elemen dari margin. Contoh penerapannya:
-```
-div {
-  border: 2px solid black;
-}
-```
-- Padding: ruang tambahan di dalam elemen antara konten elemen dan bordernya. Contoh penerapannya:
-```
-div {
-  padding: 20px;
-}
-```
-
-4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+## 4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
 
 - Flex box layout: metode menyusun elemen dalam satu dimensi (baris atau kolom). Dalam satu alignment, misal baris, kolomnya tidak ikut dibagi secara merata melainkan dapat memperbesar atau memperkecil content sesuai dengan ruang yang tersisa. 
 
@@ -342,7 +331,7 @@ Kegunaan: navigation bar yang responsif, dimana akan berupa menu horizontal pada
 
 Kegunaan: menampilkan cards seperti pada proyek ini, dengan rapih dan tersusun dalam 2 dimensi.
 
-5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 - Implementasikan fungsi untuk menghapus dan mengedit product.
 
 Tambahkan function untuk edit dan delete di views.py dalam main:
@@ -699,3 +688,210 @@ btn.addEventListener("click", () => {
 });
 </script>
 ```
+</details>
+
+<details open>
+<summary><h2>Tugas 6</h2></summary>
+
+## 1.  Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+- Membuat web lebih interaktif melalui animasi, AJAX, DOM manipulation
+- Client-side execution sehingga prosesnya lebih cepat
+- Dapat melakukan client-side validation sehingga mengurangi beban server
+- Dapat melakukan asynchronous processing melalui AJAX dan fetch() sehingga tidak menganggu proses lain
+
+## 2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+Await saat menggunakan fetch() berfungsi untuk menandakan suatu fungsi yang asinkronus sehingga eksekusi akan ditahan hingga operasi fetch selesai.
+
+Tanpa await, proses akan terus berjalan secara asinkronus dan eksekusi dilanjutkan dengan kemungkinan ada data yang belum siap. Hal tersebut bisa menimbulkan error atau kesalahan dalam program.
+
+## 3. Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+Decorator csrf_exempt pada view diperlukan untuk AJAX POST untuk membolehkan AJAX POST tidak menyertakan CSRF token yang secara default dimiliki Django. Tanpa decorator ini, AJAX POST yang tidak memiliki token CSRF akan ditolak dan dianggap tidak aman.
+
+Dalam AJAX, validator yang dipakai adalah header yang ditambahkan oleh JavaScript. Lain halnya dengan CSRF yang berupa cookies validator sehingga dalam kasus ini CSRF Token tidak perlu digunakan.
+Referensi: https://security.stackexchange.com/questions/167064/is-csrf-protection-useless-with-ajax
+
+## 4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+Selama proses pengiriman data, data dapat di-intercept menggunakan proxy seperti Postman atau BurpSuite dan diubah datanya. Dengan tools itu pula, frontend bisa dilewati oleh pengguna sehingga input tidak tervalidasi dari awal. Oleh karena itu, pembersihan data di backend juga diperlukan agar terhindar dari lolosnya input berbahaya.
+
+## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+### AJAX GET 
+- Ubahlah kode cards data mood agar dapat mendukung AJAX GET.
+Membuat placeholder div untuk cards dari data mood yang nantinya akan diisi oleh fungsi refresh entries:
+```
+<div id="fresh_bakes_entry_cards"></div>
+```
+- Lakukan pengambilan data mood menggunakan AJAX GET. Pastikan bahwa data yang diambil hanyalah data milik pengguna yang logged-in.
+Membuat function get entries untuk mengambil data dari endpoint show json:
+```
+  async function getBakesEntries(){
+      return fetch("{% url 'main:show_json' %}").then((res) => res.json())
+  }
+```
+Yang akan dipanggil pada refresh entries:
+```
+async function refreshBakesEntries() {
+    document.getElementById("fresh_bakes_entry_cards").innerHTML = "";
+    document.getElementById("fresh_bakes_entry_cards").className = "";
+    const bakeEntries = await getBakesEntries();
+    let htmlString = "";
+    let classNameString = "";
+    ...
+```
+Dengan melakukan filtering terhadap show_json sehingga hanya produk yang dimiliki oleh user logged in yang akan tampil:
+```
+def show_json(request):
+    data = Product.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+### AJAX POST
+- Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan mood.
+Membuat button yang terhubung ke modal. Jika dipencet akan menjalankan fungsi showModal untuk menampilkan modal:
+```
+      <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="btn bg-rose-700 hover:bg-rose-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();">
+        Add New Fresh Bakes by AJAX
+      </button>
+```
+- Buatlah fungsi view baru untuk menambahkan mood baru ke dalam basis data.
+Membuat fungsi view khusus AJAX dengan filtering tags untuk menghindari injeksi seperti XSS. Fungsi ini akan membuat objek baru yang dimasukkan ke database setelah filtering dilakukan dan data valid.
+```
+@csrf_exempt
+@require_POST
+def add_bakes_entry_ajax(request):
+    name = strip_tags(request.POST.get("name"))
+    description = strip_tags(request.POST.get("description"))
+    price = request.POST.get("price")
+    user = request.user
+    if name=="" or description=="":
+        return HttpResponse(b"ERROR: Invalid data.", status=400)
+    new_bakes = Product(
+        name=name, description=description,
+        price=price,
+        user=user
+    )
+    new_bakes.save()
+    return HttpResponse(b"CREATED", status=201)
+```
+- Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+Tambahkan kode ini pada urls.py di main:
+```
+path('create-ajax/', add_bakes_entry_ajax, name='add_bakes_entry_ajax'),
+```
+- Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+path create-ajax terhubung ke fungsi views add_bakes_entry_ajax yang menerima form berupa FreshBakesForm.
+```
+          <form id="FreshBakesForm">
+            <div class="mb-4">
+              <label for="name" class="block text-sm font-medium text-orange-700">Name</label>
+              <input type="text" id="name" name="name" class="mt-1 block w-full border border-orange-300 rounded-md p-2 hover:border-rose-700" placeholder="Enter your bakes" required>
+            </div>
+            <div class="mb-4">
+              <label for="description" class="block text-sm font-medium text-orange-700">Description</label>
+              <textarea id="description" name="description" rows="3" class="mt-1 block w-full h-52 resize-none border border-orange-300 rounded-md p-2 hover:border-rose-700" placeholder="Bakes description" required></textarea>
+            </div>
+            <div class="mb-4">
+              <label for="price" class="block text-sm font-medium text-orange-700">Price</label>
+              <input type="number" id="price" name="price" min="1" max="1000000000000000" class="mt-1 block w-full border border-orange-300 rounded-md p-2 hover:border-rose-700" required>
+            </div>
+          </form>
+          ...
+          <button type="submit" id="submitFreshBakesEntry" form="FreshBakesForm" class="bg-rose-700 hover:bg-rose-600 text-white font-bold py-2 px-4 rounded-lg">Save</button>
+          ...
+          document.getElementById("submitFreshBakesEntry").onclick = addFreshBakesEntry;
+          ...
+          function addFreshBakesEntry() {
+            fetch("{% url 'main:add_bakes_entry_ajax' %}", {
+              method: "POST",
+              body: new FormData(document.querySelector('#FreshBakesForm')),
+            })
+            .then(response => {
+              if (!response.ok){
+                throw new Error('Invalid data');
+              }
+              return refreshBakesEntries()})
+            .then(() =>{
+              document.getElementById("FreshBakesForm").reset(); 
+              document.getElementById('formErrors').innerHTML = '';
+              document.querySelector("[data-modal-toggle='crudModal']").click();
+              hideModal();
+            })
+
+            .catch(error => {
+              document.getElementById('formErrors').innerHTML = `<p>Data invalid. Please try again.</p>`;
+            });
+            return false;
+          }
+```
+addFreshBakesEntry juga akan menutup modal setelah data berhasil masuk, namun akan menunjukkan pesan error jika ada gagal input.
+- Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar mood terbaru tanpa reload halaman utama secara keseluruhan.
+Menggunakan refresh entry, kita bisa update data sesuai dengan json data yang terbaru:
+```
+  async function refreshBakesEntries() {
+    document.getElementById("fresh_bakes_entry_cards").innerHTML = "";
+    document.getElementById("fresh_bakes_entry_cards").className = "";
+    const bakeEntries = await getBakesEntries();
+    let htmlString = "";
+    let classNameString = "";
+    if (bakeEntries.length === 0) {
+        classNameString = "flex flex-col items-center justify-center min-h-[24rem] p-6";
+        htmlString = `
+            <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+                <img src="{% static 'image/sad_image.png' %}" alt="Sad face" class="w-32 h-32 mb-4"/>
+                <p class="text-center text-gray-600 mt-4">You've got no bakes yet.</p>
+            </div>
+        `;
+    }
+    else {
+        classNameString = "columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full"
+        bakeEntries.forEach((item) => {
+            const name = DOMPurify.sanitize(item.fields.name);
+            const description= DOMPurify.sanitize(item.fields.description);
+            const price = item.fields.price;
+            htmlString += `
+            <div class="relative break-inside-avoid">
+              <div class="absolute top-2 z-10 left-1/2 -translate-x-1/2 flex items-center -space-x-2">
+                <div class="w-[4rem] h-8 bg-rose-400 rounded-md opacity-80 -rotate-45"></div>
+              </div>
+            
+              <!-- Card -->
+              <div class="relative top-5 w-120 h-60 bg-orange-100 shadow-lg rounded-lg mb-6 flex flex-col border-2 border-orange-300 transform rotate-1 hover:rotate-0 hover:scale-105 hover:animate-shake transition-transform duration-300 overflow-hidden">
+                  <div class="bg-rose-200 text-gray-800 p-4 rounded-t-lg border-b-2 border-orange-300">
+                    <h3 class="font-bold text-xl mb-2">${item.fields.name}</h3>
+                    <p class="text-gray-600">${item.fields.production_date}</p>
+                  </div>
+                
+                  <div class="p-4 bg-orange-50 flip-card-back w-full h-full transition-transform duration-700 ease-in-out hover:rotate-y-180">
+                    <div class="flip-content-front">
+                      <p class="font-semibold text-lg mb-2">Description</p>
+                      <p class="text-gray-700 mb-2 truncate whitespace-nowrap">${item.fields.description}</p>
+                    </div>
+                    <div class="flip-content-back absolute inset-0 flex items-center justify-center transform rotate-y-180">
+                      <div>
+                        <p class="font-semibold text-lg mb-2">Price</p>
+                        <p class="text-gray-700 font-bold text-2xl">${item.fields.price}</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+                
+              <!-- Tombol edit dan delete -->
+              <div class="absolute top-0 -right-4 flex space-x-1">
+                <a href="/edit-fresh-bakes/${item.pk}" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-full p-2 transition duration-300 shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                  </svg>
+                </a>
+                <a href="/delete/${item.pk}" class="bg-red-500 hover:bg-red-600 text-white rounded-full p-2 transition duration-300 shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            `;
+        });
+    }
+    document.getElementById("fresh_bakes_entry_cards").className = classNameString;
+    document.getElementById("fresh_bakes_entry_cards").innerHTML = htmlString;
+  }
+```
+</details>
